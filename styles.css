@@ -1,0 +1,42 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculator {
+    border: 2px solid black;
+    height: 750px;
+    width: 500px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.screen {
+    border: 2px solid black;
+    height: 50px;
+    width: 400px;
+}
+
+.buttons-container {
+    border: 2px solid black;
+    height: 550px;
+    width: 400px;
+}
