@@ -33,10 +33,24 @@ body {
     border: 2px solid black;
     height: 50px;
     width: 400px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.top-screen, .bottom-screen {
+    border: 2px solid black;
+    height: 20px;
+    width: 398px;
+    text-align: right;
 }
 
 .buttons-container {
     border: 2px solid black;
     height: 550px;
     width: 400px;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: baseline;
 }
