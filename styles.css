@@ -26,12 +26,12 @@ body {
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 35px;
 }
 
 .screen {
     border: 2px solid black;
-    height: 50px;
+    height: 75px;
     width: 400px;
     display: flex;
     flex-flow: column;
@@ -41,9 +41,13 @@ body {
 
 .top-screen, .bottom-screen {
     border: 2px solid black;
-    height: 20px;
+    height: 25px;
     width: 398px;
     text-align: right;
+}
+
+.bottom-screen {
+    height: 50px;
 }
 
 .buttons-container {
@@ -51,6 +55,6 @@ body {
     height: 550px;
     width: 400px;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column;
     align-items: baseline;
 }
