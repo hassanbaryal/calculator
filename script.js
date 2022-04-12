@@ -8,7 +8,7 @@ let number2 = '';
 let answer;
 let equalsClicked = false;
 let operator = [];
-let firstOperatorClicked = false
+let operatorClicked = false
 
 function add(x, y) {
     return parseFloat(x) + parseFloat(y)
@@ -47,7 +47,7 @@ function beginCalculations (operator, x, y) {
 
 function updateDisplay () {
     // if number 2 has not been input yet
-    if (!firstOperatorClicked) {
+    if (!operatorClicked) {
         topScreen.textContent = `${number1+operator}`
         bottomScreen.textContent = ''
     } else if (equalsClicked) {
@@ -57,8 +57,7 @@ function updateDisplay () {
         number1 = answer
         number2 = ''
         operator.pop()
-        equalsClicked = false
-        firstOperatorClicked = false
+        operatorClicked = false
     } else {
         answer = operate(operator[0], number1, number2)
         //splice the previous operator
@@ -95,7 +94,7 @@ operatorBtnsArray.forEach((btn) => {
 
         // grab users input and stores it
         // if operator is clicked for the first time, input is stored in number1
-        if (!firstOperatorClicked) {
+        if (!operatorClicked) {
             number1 = bottomScreen.textContent
             if(number1 == '') number1 = 0
         } else {
@@ -106,7 +105,7 @@ operatorBtnsArray.forEach((btn) => {
         console.log(number1 + '|' + number2 + '|' + operator[0])
         updateDisplay()
 
-        firstOperatorClicked = true        
+        operatorClicked = true        
     })
 })
 
@@ -114,8 +113,12 @@ operatorBtnsArray.forEach((btn) => {
 const equalBtn = document.querySelector('.equal')
 
 equalBtn.addEventListener('click', () => {
-    equalsClicked = true
-    number2 = bottomScreen.textContent
-    if (number2 == '') number2 = 0
-    updateDisplay()
+    
+    if (operatorClicked) {
+        equalsClicked = true
+        number2 = bottomScreen.textContent
+        if (number2 == '') number2 = 0
+        updateDisplay()
+        equalsClicked = false
+    }
 })
