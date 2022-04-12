@@ -36,7 +36,13 @@ function operate (operator, x, y) {
     } else if (operator == '×') {
         return multiply(x, y)
     } else {
-        return divide(x, y)
+        // return divide(x, y)
+        if (!(y == 0)) {
+            return divide(x, y)
+        } else {
+            setTimeout(() => {bottomScreen.textContent = ''; topScreen.textContent = ''}, 2000)
+            return 'Error 2. Clearing...'
+        }
     }
 }
 
