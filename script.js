@@ -6,8 +6,8 @@ const bottomScreen = document.querySelector('.bottom-screen')
 let number1 = '';
 let number2 = '';
 let answer;
+let equalsClicked = false;
 let operator = [];
-let nextOperator
 let firstOperatorClicked = false
 
 function add(x, y) {
@@ -45,13 +45,23 @@ function beginCalculations (operator, x, y) {
     console.log(userInput)
 }
 
-function updateDisplay (answer = undefined) {
-    if (number2 == '') {
+function updateDisplay () {
+    // if number 2 has not been input yet
+    if (!firstOperatorClicked) {
         topScreen.textContent = `${number1+operator}`
         bottomScreen.textContent = ''
-        console.log('apple')
+    } else if (equalsClicked) {
+        answer = operate(operator[0], number1, number2)
+        topScreen.textContent = number1+operator[0]+number2+'='
+        bottomScreen.textContent = answer
+        number1 = answer
+        number2 = ''
+        operator.pop()
+        equalsClicked = false
+        firstOperatorClicked = false
     } else {
         answer = operate(operator[0], number1, number2)
+        //splice the previous operator
         operator.splice(0,1)
         number1 = answer
         topScreen.textContent = number1+operator[0]
@@ -62,9 +72,7 @@ function updateDisplay (answer = undefined) {
 
 }
 
-const equalBtn = document.querySelector('.equal')
 
-equalBtn.addEventListener('click', beginCalculations)
 
 
 const digitBtns = document.querySelectorAll('.digit')
@@ -72,10 +80,6 @@ const digitBtnsArray = Array.from(digitBtns)
 
 digitBtnsArray.forEach((btn) => {
     btn.addEventListener('click', function (e) {
-        // if (firstOperatorClicked) {
-        //     number2 += e.target.textContent
-        // } else number1 += e.target.textContent
-
         bottomScreen.textContent += e.target.textContent
     } )
 })
@@ -89,6 +93,8 @@ operatorBtnsArray.forEach((btn) => {
 
         operator.push(e.target.textContent)
 
+        // grab users input and stores it
+        // if operator is clicked for the first time, input is stored in number1
         if (!firstOperatorClicked) {
             number1 = bottomScreen.textContent
             if(number1 == '') number1 = 0
@@ -100,25 +106,16 @@ operatorBtnsArray.forEach((btn) => {
         console.log(number1 + '|' + number2 + '|' + operator[0])
         updateDisplay()
 
-        firstOperatorClicked = true
-
-        // if (number1 == '') { number1 = 0 }
-        // else if (number2 == '') { number2 = 0}
-
-        
-        // if (number1 == undefined) {
-        //     if (bottomScreen.textContent == '') {
-        //         number1 = 0
-        //     } else number1 = bottomScreen.textContent
-        // } else {
-        //     if (bottomScreen.textContent == '') {
-        //         number2 = 0
-        //     } else number2 = bottomScreen.textContent
-
-        //     beginCalculations(operator, number1, number2)
-        // }
-
-        
-        
+        firstOperatorClicked = true        
     })
+})
+
+
+const equalBtn = document.querySelector('.equal')
+
+equalBtn.addEventListener('click', () => {
+    equalsClicked = true
+    number2 = bottomScreen.textContent
+    if (number2 == '') number2 = 0
+    updateDisplay()
 })
