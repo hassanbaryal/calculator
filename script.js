@@ -9,6 +9,7 @@ let answer;
 let equalsClicked = false;
 let operator = [];
 let operatorClicked = false
+let decimalClicked = false
 
 function add(x, y) {
     return parseFloat(x) + parseFloat(y)
@@ -46,6 +47,7 @@ function beginCalculations (operator, x, y) {
 }
 
 function updateDisplay () {
+    decimalBtn.disabled = false
     // if number 2 has not been input yet
     if (!operatorClicked) {
         topScreen.textContent = `${number1+operator}`
@@ -91,7 +93,6 @@ operatorBtnsArray.forEach((btn) => {
     btn.addEventListener('click', (e) => {
 
         operator.push(e.target.textContent)
-
         // grab users input and stores it
         // if operator is clicked for the first time, input is stored in number1
         if (!operatorClicked) {
@@ -101,11 +102,10 @@ operatorBtnsArray.forEach((btn) => {
             number2 = bottomScreen.textContent
             if (number2 == '') number2 = 0
         }
-
-        console.log(number1 + '|' + number2 + '|' + operator[0])
         updateDisplay()
 
-        operatorClicked = true        
+        operatorClicked = true
+        
     })
 })
 
@@ -121,4 +121,14 @@ equalBtn.addEventListener('click', () => {
         updateDisplay()
         equalsClicked = false
     }
+})
+
+const decimalBtn = document.querySelector('.decimal')
+
+decimalBtn.addEventListener('click', (e) => {
+    if (!e.target.disabled)
+    e.target.disabled = true
+    if (bottomScreen.textContent == '') {
+        bottomScreen.textContent += '0.'
+    } else bottomScreen.textContent += '.'
 })
