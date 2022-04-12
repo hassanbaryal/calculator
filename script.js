@@ -92,19 +92,22 @@ const operatorBtnsArray = Array.from(operatorBtns)
 operatorBtnsArray.forEach((btn) => {
     btn.addEventListener('click', (e) => {
 
-        operator.push(e.target.textContent)
-        // grab users input and stores it
-        // if operator is clicked for the first time, input is stored in number1
-        if (!operatorClicked) {
-            number1 = bottomScreen.textContent
-            if(number1 == '') number1 = 0
-        } else {
-            number2 = bottomScreen.textContent
-            if (number2 == '') number2 = 0
-        }
-        updateDisplay()
+        //if the display area contains nothing, does not execute
+        if (!bottomScreen.textContent == '') {
 
-        operatorClicked = true
+            operator.push(e.target.textContent)
+            // grab users input and stores it
+            // if operator is clicked for the first time, input is stored in number1
+            if (!operatorClicked) {
+                number1 = bottomScreen.textContent
+            } else {
+                number2 = bottomScreen.textContent
+            }
+            updateDisplay()
+
+            operatorClicked = true
+        }
+        
         
     })
 })
@@ -113,11 +116,9 @@ operatorBtnsArray.forEach((btn) => {
 const equalBtn = document.querySelector('.equal')
 
 equalBtn.addEventListener('click', () => {
-    
-    if (operatorClicked) {
+    if (operatorClicked && !bottomScreen.textContent == '') {
         equalsClicked = true
         number2 = bottomScreen.textContent
-        if (number2 == '') number2 = 0
         updateDisplay()
         equalsClicked = false
     }
