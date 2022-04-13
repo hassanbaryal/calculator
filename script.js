@@ -68,6 +68,7 @@ function updateDisplay () {
         bottomScreen.textContent = ''
     } else if (equalsClicked) {
         answer = operate(operator[0], number1, number2)
+        if (answer.toString().includes(".")) decimalBtn.disabled = true
         topScreen.textContent = number1+operator[0]+number2+'='
         bottomScreen.textContent = answer
         if (isNaN(answer)) answer = ''
