@@ -40,9 +40,9 @@ function operate (operator, x, y) {
         if (!(y == 0)) {
             return divide(x, y)
         } else {
-            bottomScreen.textContent = 'Error 2. Clearing...'
+            
             setTimeout(() => {bottomScreen.textContent = ''; topScreen.textContent = ''}, 2000)
-            return 0
+            return 'Error 2. Clearing...'
         }
     }
 }
@@ -63,6 +63,7 @@ function updateDisplay () {
         answer = operate(operator[0], number1, number2)
         topScreen.textContent = number1+operator[0]+number2+'='
         bottomScreen.textContent = answer
+        if (isNaN(answer)) answer = ''
         number1 = ''
         number2 = ''
         operator.pop()
