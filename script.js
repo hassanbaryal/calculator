@@ -18,6 +18,8 @@ clearEntityBtn.addEventListener('click', clearEntity)
 const clearAllBtn = document.querySelector('.clear-all')
 clearAllBtn.addEventListener('click', clearAll)
 
+const answerBtn = document.querySelector('.answer')
+answerBtn.addEventListener('click', displayPreviousAnswer)
 
 
 function add(x, y) {
@@ -106,6 +108,12 @@ function clearAll () {
     operator = []
     operatorClicked = false
     decimalBtn.disabled = false
+}
+
+function displayPreviousAnswer () {
+    bottomScreen.textContent = answer
+    decimalBtn.disabled = false
+    if (answer.toString().includes('.')) decimalBtn.disabled = true
 }
 
 
