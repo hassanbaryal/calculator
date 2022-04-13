@@ -11,6 +11,13 @@ let operator = [];
 let operatorClicked = false
 let decimalClicked = false
 
+
+const clearEntityBtn = document.querySelector('.clear-entity')
+clearEntityBtn.addEventListener('click', clearEntity)
+
+
+
+
 function add(x, y) {
     return parseFloat(x) + parseFloat(y)
 }
@@ -81,7 +88,12 @@ function updateDisplay () {
 
 }
 
-
+function clearEntity () {
+    let displayValue = bottomScreen.textContent.split('')
+    let poppedValue = displayValue.pop()
+    bottomScreen.textContent = displayValue.join('')
+    if (poppedValue == '.') decimalBtn.disabled = false
+}
 
 
 const digitBtns = document.querySelectorAll('.digit')
