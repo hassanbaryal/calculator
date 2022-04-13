@@ -89,7 +89,15 @@ button {
     height: 75px;
     width: 350px;
     display: flex;
+    justify-content: space-around;
+}
 
+.special {
+    background-color: royalblue;
+}
+
+.answer {
+    font-size: 25px;
 }
 
 .digits-operators-container {
