@@ -15,6 +15,8 @@ let decimalClicked = false
 const clearEntityBtn = document.querySelector('.clear-entity')
 clearEntityBtn.addEventListener('click', clearEntity)
 
+const clearAllBtn = document.querySelector('.clear-all')
+clearAllBtn.addEventListener('click', clearAll)
 
 
 
@@ -94,6 +96,16 @@ function clearEntity () {
     let poppedValue = displayValue.pop()
     bottomScreen.textContent = displayValue.join('')
     if (poppedValue == '.') decimalBtn.disabled = false
+}
+
+function clearAll () {
+    topScreen.textContent = ''
+    bottomScreen.textContent = ''
+    number1 = ''
+    number2 = ''
+    operator = []
+    operatorClicked = false
+    decimalBtn.disabled = false
 }
 
 
